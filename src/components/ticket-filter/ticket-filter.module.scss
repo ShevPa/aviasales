@@ -1,0 +1,35 @@
+@import '../App/vars';
+.ticketFilter{
+    background-color: white;
+    width: 502px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    overflow: hidden;
+}
+.ticketFilter__list{
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+.ticketFilter__item{
+    width: 168px;
+    height: 50px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: $colortext;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; 
+    letter-spacing: 0.5px;
+    border: 1px solid $color-border;
+}
+.ticketFilter__item.active {
+    color:white;
+    background-color: $color-blue;
+    border-color: $color-blue;  
+}

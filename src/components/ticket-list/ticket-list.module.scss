@@ -1,0 +1,19 @@
+@import '../App/vars';
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    color: white;
+    background-color: $color-blue;
+    text-transform: uppercase;
+    border-radius: 7px;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
