@@ -24,6 +24,7 @@
     "plugins": ["react", "react-hooks", "import", "jsx-a11y", "prettier"],
     "rules": {
       "no-plusplus": "off",
+      "no-case-declarations": 0,
       "import/prefer-default-export": "off",
       "react/destructuring-assignment": "off",
       "no-param-reassign": "off",
@@ -33,16 +34,18 @@
       "jsx-a11y/control-has-associated-label": "off",
       "jsx-a11y/no-autofocus": "off",
       "react/forbid-prop-types": "off",
-      "indent": ["error", 2],
+      "indent": ["error", 2, { "SwitchCase": 1 } ],
       "prettier/prettier": [
         "error",
         {
-          "semi": false
+          "semi": false,
+          "endOfLine": "auto"
         }
       ],
       "linebreak-style": [0, "unix"],
       "quotes": ["error", "single"],
       "semi": ["error", "never"],
+      "default-param-last": 0,
       "react/react-in-jsx-scope": "off",
       "react/static-property-placement": ["error", "static public field"],
       "react/prefer-stateless-function": "off",

@@ -1,37 +1,36 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import { getTransferFilter } from '../../redux/actions'
 
 import cl from './filter-transfer.module.scss'
 
-function FilterTransfer() {
+function FilterTransfer({ filters, onCheckChange }) {
+  const checkboxes = filters.map((item) => {
+    return (
+      <div key={item.name} className={cl.filter__item}>
+        <label className={cl.filter__label}>
+          <input type="checkbox" name={item.name} checked={item.checked} onChange={() => onCheckChange(item.name)} />{' '}
+          <span>{item.label}</span>
+        </label>
+      </div>
+    )
+  })
   return (
     <div className={cl.filter}>
       <p className={cl.filter__header}>Количество пересадок</p>
-      <div className={cl.filter__item}>
-        <label className={cl.filter__label}>
-          <input type="checkbox" /> <span>Все</span>
-        </label>
-      </div>
-      <div className={cl.filter__item}>
-        <label className={cl.filter__label}>
-          <input type="checkbox" /> <span>Без пересадок</span>
-        </label>
-      </div>
-      <div className={cl.filter__item}>
-        <label className={cl.filter__label}>
-          <input type="checkbox" /> <span>1 пересадка</span>
-        </label>
-      </div>
-      <div className={cl.filter__item}>
-        <label className={cl.filter__label}>
-          <input type="checkbox" /> <span>2 пересадки</span>
-        </label>
-      </div>
-      <div className={cl.filter__item}>
-        <label className={cl.filter__label}>
-          <input type="checkbox" /> <span>3 пересадки</span>
-        </label>
-      </div>
+      {checkboxes}
     </div>
   )
 }
-export default FilterTransfer
+const mapStateToProps = (state) => {
+  return {
+    filters: state.transferReducer.filters,
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCheckChange: (name) => dispatch(getTransferFilter(name)),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(FilterTransfer)
