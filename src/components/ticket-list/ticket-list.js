@@ -9,10 +9,6 @@ function TicketList() {
     <>
       <div>
         <Ticket />
-        <Ticket />
-        <Ticket />
-        <Ticket />
-        <Ticket />
       </div>
       <div>
         <button type="button" className={cl.button}>

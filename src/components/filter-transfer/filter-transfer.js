@@ -25,7 +25,7 @@ function FilterTransfer({ filters, onCheckChange }) {
 }
 const mapStateToProps = (state) => {
   return {
-    filters: state.transferReducer.filters,
+    filters: state.transfer.filters,
   }
 }
 const mapDispatchToProps = (dispatch) => {

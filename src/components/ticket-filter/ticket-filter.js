@@ -31,7 +31,7 @@ function TicketFilter({ filterName, onFilterChange }) {
 }
 const mapStateToProps = (state) => {
   return {
-    filterName: state.ticketReducer.filterName,
+    filterName: state.ticket.filterName,
   }
 }
 const mapDispatchToProps = (dispatch) => {

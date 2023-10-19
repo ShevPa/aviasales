@@ -10,3 +10,15 @@ export const getTransferFilter = (name) => {
     name,
   }
 }
+export const loadTickets = () => {
+  return async (dispatch) => {
+    const responseSearchId = await (await fetch('https://aviasales-test-api.kata.academy/search')).json()
+    const responseData = await (
+      await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${responseSearchId.searchId}`)
+    ).json()
+    dispatch({
+      type: 'LOAD_TICKETS',
+      data: { responseData },
+    })
+  }
+}
