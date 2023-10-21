@@ -1,3 +1,16 @@
+/* eslint-disable no-await-in-loop */
+import TicketService from '../service/ticket-service'
+
+const setLoaderOn = () => {
+  return {
+    type: 'SET_LOADER_ON',
+  }
+}
+const setLoaderOff = () => {
+  return {
+    type: 'SET_LOADER_OFF',
+  }
+}
 export const getTicketFilter = (name) => {
   return {
     type: 'GET_TICKET_FILTER',
@@ -10,15 +23,33 @@ export const getTransferFilter = (name) => {
     name,
   }
 }
+const service = new TicketService()
 export const loadTickets = () => {
   return async (dispatch) => {
-    const responseSearchId = await (await fetch('https://aviasales-test-api.kata.academy/search')).json()
-    const responseData = await (
-      await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${responseSearchId.searchId}`)
-    ).json()
+    dispatch(setLoaderOn())
+    const searchId = await service.getSearchId()
+    const data = await service.getData(searchId)
+    let { stop } = data
+    const { tickets } = data
+    const ticketsData = tickets
     dispatch({
-      type: 'LOAD_TICKETS',
-      data: { responseData },
+      type: 'LOAD_ALL_TICKETS',
+      data: { ticketsData },
     })
+    while (stop === false) {
+      const newTickets = await service.getData(searchId)
+      ticketsData.push(...newTickets.tickets)
+      stop = newTickets.stop
+    }
+    dispatch({
+      type: 'LOAD_ALL_TICKETS',
+      data: { ticketsData },
+    })
+    dispatch(setLoaderOff())
+  }
+}
+export const loadMoreTickets = () => {
+  return {
+    type: 'LOAD_MORE_TICKETS',
   }
 }

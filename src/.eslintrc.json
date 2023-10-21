@@ -34,6 +34,7 @@
       "jsx-a11y/control-has-associated-label": "off",
       "jsx-a11y/no-autofocus": "off",
       "react/forbid-prop-types": "off",
+      "no-nested-ternary": "off",
       "indent": ["error", 2, { "SwitchCase": 1 } ],
       "prettier/prettier": [
         "error",

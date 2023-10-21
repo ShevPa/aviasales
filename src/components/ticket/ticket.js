@@ -2,13 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-import { loadTickets } from '../../redux/actions'
 import { transferHelper, durationToHours, startFlightTime, endFlightTime } from '../../helpers/ticket-helper'
+import { sortTickets, filterTransfers } from '../../helpers/sort-helper'
 
 import cl from './ticket.module.scss'
 
-function Ticket({ ticketData }) {
-  const tickets = ticketData?.map((item) => {
+function Ticket({ ticketData, numOfTickets, filter, transfers, isLoading }) {
+  const filtredTickets = filterTransfers(ticketData, transfers)
+  const noTicketsMessage = !isLoading ? (
+    <div className={cl.message}>Рейсов, подходящих под заданные фильтры, не найдено</div>
+  ) : null
+  const tickets = sortTickets(filtredTickets, filter)?.map((item) => {
     const forth = item.segments[0]
     const back = item.segments[1]
     const numberWithSpaces = (num) => {
@@ -57,16 +61,15 @@ function Ticket({ ticketData }) {
       </div>
     )
   })
-  return <div>{tickets}</div>
+  return <div>{tickets.length === 0 ? noTicketsMessage : tickets?.slice(0, numOfTickets)}</div>
 }
 const mapStateToProps = (state) => {
   return {
     ticketData: state.load.tickets,
+    numOfTickets: state.load.numOfTicketsOnScreen,
+    filter: state.ticket.filterName,
+    transfers: state.transfer.filters,
+    isLoading: state.loader.isLoading,
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    load: dispatch(loadTickets()),
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Ticket)
+export default connect(mapStateToProps)(Ticket)
