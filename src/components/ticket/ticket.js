@@ -27,30 +27,28 @@ function Ticket({ ticketData, numOfTickets, filter, transfers, isLoading }) {
           </div>
         </div>
         <div className={cl.ticket__main}>
-          <div className={cl.ticket__column}>
+          <div className={cl.ticket__row}>
             <div className={cl.ticket__content}>
               <span>{`${forth.origin} - ${forth.destination}`}</span>
               <span>{`${startFlightTime(forth.date)} - ${endFlightTime(forth.date, forth.duration)}`}</span>
             </div>
             <div className={cl.ticket__content}>
-              <span>{`${back.origin} - ${back.destination}`}</span>
-              <span>{`${startFlightTime(back.date)} - ${endFlightTime(back.date, back.duration)}`}</span>
-            </div>
-          </div>
-          <div className={cl.ticket__column}>
-            <div className={cl.ticket__content}>
               <span>в пути</span>
               <span>{durationToHours(forth.duration)}</span>
             </div>
             <div className={cl.ticket__content}>
-              <span>в пути</span>
-              <span>{durationToHours(back.duration)}</span>
-            </div>
-          </div>
-          <div className={cl.ticket__column}>
-            <div className={cl.ticket__content}>
               <span>{transferHelper(forth.stops)}</span>
               <span>{forth.stops.length === 0 ? '-' : `${forth.stops.join(', ')}`}</span>
+            </div>
+          </div>
+          <div className={cl.ticket__row}>
+            <div className={cl.ticket__content}>
+              <span>{`${back.origin} - ${back.destination}`}</span>
+              <span>{`${startFlightTime(back.date)} - ${endFlightTime(back.date, back.duration)}`}</span>
+            </div>
+            <div className={cl.ticket__content}>
+              <span>в пути</span>
+              <span>{durationToHours(back.duration)}</span>
             </div>
             <div className={cl.ticket__content}>
               <span>{transferHelper(back.stops)}</span>

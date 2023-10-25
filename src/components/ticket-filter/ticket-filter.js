@@ -14,18 +14,19 @@ function TicketFilter({ filterName, onFilterChange }) {
   const filterTabs = filters.map((item) => {
     const isActive = filterName === item.name
     return (
-      <li
+      <label
         key={item.name}
         className={`${cl.ticketFilter__item} ${isActive ? cl.active : ''}`}
         onClick={() => onFilterChange(item.name)}
       >
+        <input type="radio" name="sorting" id={item.name} />
         {item.label}
-      </li>
+      </label>
     )
   })
   return (
     <div className={cl.ticketFilter}>
-      <ul className={cl.ticketFilter__list}>{filterTabs}</ul>
+      <div className={cl.ticketFilter__list}>{filterTabs}</div>
     </div>
   )
 }

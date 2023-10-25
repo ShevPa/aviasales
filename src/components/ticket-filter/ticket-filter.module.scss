@@ -5,6 +5,9 @@
     margin-bottom: 20px;
     border-radius: 7px;
     overflow: hidden;
+    @media (max-width: 800px) {
+        width:80%;
+    }
 }
 .ticketFilter__list{
     display: flex;
@@ -28,6 +31,10 @@
     letter-spacing: 0.5px;
     border: 1px solid $color-border;
     cursor: pointer;
+
+    input{
+        appearance: none;
+    }
 }
 .ticketFilter__item.active {
     color:white;

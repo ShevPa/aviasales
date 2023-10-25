@@ -8,6 +8,12 @@
     width: 232px;
     max-height: 252px;
 
+    @media (max-width: 800px) {
+        width: 80%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
     .filter__header{
         padding: 20px;
         padding-bottom: 10px;

@@ -10,7 +10,7 @@ function TicketList({ isLoading, loadMore }) {
   const loaderMessage = <div className={cl.message}>Ещё подгружаем билеты, уже почти загрузили</div>
   return (
     <>
-      <div>
+      <div className={cl.ticket__list}>
         {isLoading === true ? loaderMessage : null}
         <Ticket />
       </div>

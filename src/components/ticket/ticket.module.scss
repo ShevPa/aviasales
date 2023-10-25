@@ -18,6 +18,9 @@
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.10);
     margin-bottom: 20px;
 
+    @media (max-width: 800px) {
+        width: 90%
+    }
     .ticket__header{
         display: flex;
         justify-content: space-between;
@@ -33,18 +36,19 @@
 
     .ticket__main{
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         padding-left: 20px;
         padding-right: 20px;
 
-        .ticket__column{
+        .ticket__row{
             display: flex;
-            flex-direction: column;
 
             .ticket__content{
                 display: flex;
+                margin-right: auto;
                 flex-direction: column;
                 margin-bottom: 10px;
+                width: 120px;
             }
             .ticket__content span:first-child{
                 color: $color-grey;
